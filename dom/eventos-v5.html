@@ -1,0 +1,43 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p>{{ contador }}</p>
+    <button v-on:click="somar(5, $event)">Somar 5</button>
+    <!-- $event é uma palavra reservada para passar evento-->
+    <p v-on:mouseover="atualizaXY">
+        Mouse {{x}} e {{y}}
+        <span v-on:mouseover.stop="">Para aqui a propagacao do evento</span>
+    </p>
+    <a v-on:click.prevent="" href="http://www.google.com">Google</a>
+    <hr> //Modificador de eventos de teclado
+    <input v-on:keyup.enter.alt="alerta" type="text">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            contador: 0,
+            x: 0,
+            y: 0
+
+        },
+        methods: {
+            somar(passo, e) {
+                console.log(passo, e)
+                return this.contador += passo
+            },
+            atualizaXY(e) {
+                console.log(e);
+                this.x = e.clientX;
+                this.y = e.clientY;
+            },
+            alerta() {
+                alert('Teclas digitadas')
+            }
+            // pararEvento(e) {
+            //     e.stopPropagation();
+            // }
+        }
+    })
+</script>

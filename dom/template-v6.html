@@ -1,0 +1,27 @@
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <!-- Diretiva abaixo garante que o valor de título será resolvido apenas uma vez -->
+    <p v-once>{{ titulo }}</p>
+    <p>{{ saudacao() }}</p>
+    <a v-bind:href="link">Google</a>
+    <p v-html="linkHtml"></p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Utilizando Vue Js',
+            msg_saudacao: 'Seja bem-vindo!',
+            link: 'http://http://www.google.com.br',
+            linkHtml: '<a href="http://www.google.com">Google mundo</a>'
+        },
+        methods: {
+            saudacao: function() {
+                this.titulo = "Ola Voce !!"
+                return this.titulo;
+            }
+        }
+    })
+</script>
